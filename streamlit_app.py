@@ -18,7 +18,16 @@ if st.button("Generate Image"):
         with st.spinner("Analyzing emotion and generating image..."):
             emotion, score = detect_emotion(text)
             prompt = build_prompt(emotion, mode)
-            image_path = generate_image(prompt)
 
-        st.success(f"Emotion Detected: **{emotion}** (Confidence: {score:.2f})")
-        st.image(image_path, caption=prompt)
+            # ✅ Prompt validation
+            if not prompt or len(prompt.strip()) < 5:
+                st.error("Failed to build a valid image prompt. Please rephrase your input.")
+            else:
+                try:
+                    image_path = generate_image(prompt)
+                    st.success(f"Emotion Detected: **{emotion}** (Confidence: {score:.2f})")
+                    st.image(image_path, caption=prompt)
+                except Exception as e:
+                    st.error("Image generation failed. Please try again with a different input.")
+                    st.exception(e)  # Show error details for debugging
+
