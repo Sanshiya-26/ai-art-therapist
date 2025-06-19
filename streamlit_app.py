@@ -1,5 +1,5 @@
 import streamlit as st
-from emotion import detect_emotion
+from app.emotion import detect_emotion
 from app.prompt_builder import build_prompt
 from app.image_generator import generate_image
 
