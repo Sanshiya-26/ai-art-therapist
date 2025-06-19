@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+transformers
+torch
+diffusers
+pillow
+python-dotenv
+whisper
+jinja2
+streamlit
